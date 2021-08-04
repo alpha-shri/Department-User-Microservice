@@ -1,0 +1,54 @@
+server:
+  port: 4000
+#
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    hostname: localhost
+
+resilience4j:
+  circuitbreaker:
+    DEPARTMENT-SERVICE:
+      registerHealthIndicator: true
+      eventConsumerBufferSize: 10
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      failureRateThreshold: 50
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowSize: 10
+      waitDurationInOpenState: 5s
+      slidingWindowType: COUNT_BASED
+
+  management:
+    health:
+      circuitbreakers:
+        enabled: true
+    endpoints:
+      web:
+        exposure:
+          include: health
+    endpoint:
+      health:
+        show-details: always
+
+spring:
+  application:
+    name: USER-SERVICE
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/departmentuserdb
+    username: root
+    password: password1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+
