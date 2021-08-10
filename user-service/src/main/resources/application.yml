@@ -39,6 +39,12 @@ spring:
   application:
     name: USER-SERVICE
 
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+
+  config:
+    import: optional:configserver:http://localhost:1000
+
   datasource:
     url: jdbc:mysql://localhost:3306/departmentuserdb
     username: root

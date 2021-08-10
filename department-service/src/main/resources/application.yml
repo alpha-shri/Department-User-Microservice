@@ -1,21 +1,24 @@
 server:
   port: 3000
 
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: localhost
+# THIS IS ADDED IN THE CONFIG-GIT REPO <application.yml>
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    hostname: localhost
 
 
 
 spring:
   application:
     name: DEPARTMENT-SERVICE
+
+  zipkin:
+    base-url: http://127.0.0.1:9411/
 
   datasource:
     url: jdbc:mysql://localhost:3306/departmentuserdb

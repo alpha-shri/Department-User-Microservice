@@ -53,10 +53,10 @@ public class UserService {
     }
 
     public User findUserByUsernameService(String name){
-        User user = dao.findByName(name)
-                       .orElseThrow(() -> new RuntimeException("Cannot find user by name: " + name));
-
-        return user;
+        return dao.findByName(name)
+                       .orElseThrow(() -> {
+                           return new RuntimeException("Cannot find user by name: " + name);
+                       });
 
     }
 }
